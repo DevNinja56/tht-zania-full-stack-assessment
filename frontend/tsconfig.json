@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "target": "es6", // Set to "es6" for better compatibility with modern JavaScript
+    "lib": ["dom", "dom.iterable", "esnext"], // Library configurations
+    "allowJs": true, // Allow JavaScript files
+    "skipLibCheck": true, // Skip type checking of declaration files
+    "esModuleInterop": true, // Enable interoperability between ES and CommonJS modules
+    "allowSyntheticDefaultImports": true, // Allow default imports from modules with no default export
+    "strict": true, // Enable strict type-checking options
+    "forceConsistentCasingInFileNames": true, // Enforce consistent casing in file names
+    "noFallthroughCasesInSwitch": true, // Prevent fallthrough cases in switch statements
+    "module": "esnext", // Use ESNext module syntax
+    "moduleResolution": "node", // Use Node.js-style module resolution
+    "resolveJsonModule": true, // Allow importing JSON files
+    "isolatedModules": true, // Ensure each file can be safely transpiled
+    "noEmit": true, // Prevent TypeScript from generating output files
+    "jsx": "react-jsx" // Use the new JSX transform (for React 17+)
+  },
+  "include": ["src"], // Specify which files to include in the project
+  "exclude": ["node_modules", "**/*.test.ts"] // Exclude tests and node_modules
+}

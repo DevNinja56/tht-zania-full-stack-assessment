@@ -1,0 +1,59 @@
+.overlay-image {
+  height: 300px;
+  width: 300px;
+}
+
+/* Fullscreen backdrop to cover the entire window */
+.overlay-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.7); /* Semi-transparent dark background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 0.3s ease-in-out;
+  z-index: 1000; /* Ensure it is on top of other content */
+}
+
+/* Centered overlay content with smooth transitions */
+.overlay-content {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  animation: scaleUp 0.3s ease-in-out;
+  max-width: 90%;
+  max-height: 90%;
+  overflow: hidden; /* Prevents overflow for larger images */
+}
+
+.overlay-content img {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 4px;
+}
+
+/* Fade-in effect for backdrop */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Scale-up animation for modal content */
+@keyframes scaleUp {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}

@@ -1,0 +1,4 @@
+django>=0.0.0
+django-cors-headers>=0.0.0
+drf-yasg>=0.0.0
+cors>=0.0.0
