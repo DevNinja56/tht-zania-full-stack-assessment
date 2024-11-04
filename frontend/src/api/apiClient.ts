@@ -3,7 +3,7 @@ import { Document } from "../types/DocumentType";
 import { initialDocuments } from "../utils/documentData";
 
 const API_BASE_URL =
-  process.env.REACT_APP_BACKEND_URL || "http://localhost:8000/api";
+  process.env.REACT_APP_BACKEND_URL || "http://localhost:8000/api/v1";
 
 export const apiClient = axios.create({
   baseURL: API_BASE_URL,
