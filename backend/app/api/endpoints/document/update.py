@@ -86,3 +86,58 @@ def partial_update_document(request, id):
         return JsonResponse({"error": "Invalid JSON"}, status=400)
     except Exception as e:
         return JsonResponse({"error": str(e)}, status=500)
+
+
+@swagger_auto_schema(
+    method="post",
+    request_body=openapi.Schema(
+        type=openapi.TYPE_OBJECT,
+        properties={
+            "documents": openapi.Schema(
+                type=openapi.TYPE_ARRAY,
+                items=document_schema,
+                description="List of documents to update",
+            )
+        },
+    ),
+    responses={
+        200: "Documents updated",
+        400: "Invalid data",
+        404: "Document not found",
+    },
+)
+@api_view(["POST"])
+def batch_update_documents(request):
+    """Batch update the positions of multiple documents"""
+    try:
+        data = json.loads(request.body)
+        documents_data = data.get("documents", [])
+
+        if not isinstance(documents_data, list):
+            return JsonResponse(
+                {"error": "Invalid data format, expected a list of documents."},
+                status=400,
+            )
+
+        for doc_data in documents_data:
+            doc_id = doc_data.get("id")
+            new_position = doc_data.get("position")
+
+            # Validate each document's data
+            if doc_id is None or new_position is None:
+                return JsonResponse(
+                    {"error": "Each document must have an 'id' and 'position'."},
+                    status=400,
+                )
+
+            # Retrieve and update the document
+            document = get_object_or_404(Document, pk=doc_id)
+            document.position = new_position
+            document.save()
+
+        return JsonResponse({"message": "Documents updated successfully"}, status=200)
+
+    except json.JSONDecodeError:
+        return JsonResponse({"error": "Invalid JSON format."}, status=400)
+    except Exception as e:
+        return JsonResponse({"error": str(e)}, status=500)
